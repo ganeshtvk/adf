@@ -1,0 +1,18 @@
+{
+	"name": "DailyTrig",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Minute",
+				"interval": 1,
+				"startTime": "2022-02-21T23:53:00",
+				"endTime": "2022-02-23T18:20:00",
+				"timeZone": "India Standard Time"
+			}
+		}
+	}
+}
