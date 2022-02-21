@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "EMP*.csv",
+				"fileName": "Diabetes_datasets.csv",
 				"container": "raw"
 			},
 			"columnDelimiter": ",",
