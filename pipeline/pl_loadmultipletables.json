@@ -94,10 +94,10 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "ds_source_raw",
+									"referenceName": "ds_multicsvfiles",
 									"type": "DatasetReference",
 									"parameters": {
-										"Filename": {
+										"filename": {
 											"value": "@item().name",
 											"type": "Expression"
 										}
@@ -106,7 +106,7 @@
 							],
 							"outputs": [
 								{
-									"referenceName": "ds_sink_sqldatabase",
+									"referenceName": "AzureSqlTable2",
 									"type": "DatasetReference",
 									"parameters": {
 										"TableName": {
