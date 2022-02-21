@@ -5,6 +5,11 @@
 			"referenceName": "ls_SQLdatabase",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"TableName": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "AzureSqlTable",
 		"schema": [
@@ -45,7 +50,10 @@
 		],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "Emp"
+			"table": {
+				"value": "@dataset().TableName",
+				"type": "Expression"
+			}
 		}
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"
