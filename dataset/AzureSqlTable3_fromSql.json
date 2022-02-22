@@ -1,0 +1,23 @@
+{
+	"name": "AzureSqlTable3_fromSql",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_SQLdatabase",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"dstablename": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"table": {
+				"value": "@dataset().dstablename",
+				"type": "Expression"
+			}
+		}
+	}
+}
