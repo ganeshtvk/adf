@@ -81,7 +81,7 @@
 					"source": {
 						"type": "AzureSqlSource",
 						"sqlReaderQuery": {
-							"value": "@select * from tbluser\nwhere Last_m <=\n'@(activity('Get Max Modified Date').output.firstRow.Last_m)'\nAND Last_m >\n'@(activity('Last Modified Date').output.firstRow.LastLoadDate)'",
+							"value": "select * from tbluser\nwhere Last_m <=\n'05/01/2021'\nAND Last_m >\n'2021-05-01T00:00:00'",
 							"type": "Expression"
 						},
 						"queryTimeout": "02:00:00",
