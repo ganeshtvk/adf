@@ -10,7 +10,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"container": "raw"
+				"folderPath": "c1",
+				"container": "target"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
