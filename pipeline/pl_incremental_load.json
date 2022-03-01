@@ -1,5 +1,5 @@
 {
-	"name": "pipeline5",
+	"name": "pl_incremental_load",
 	"properties": {
 		"activities": [
 			{
@@ -81,7 +81,7 @@
 					"source": {
 						"type": "AzureSqlSource",
 						"sqlReaderQuery": {
-							"value": "@select * from [dbo].[tbluser]\nwhere Last_m <=\n'@(activity('Get Max Modified Date').output'.firstRow.Last_m)'\nAND Last_m >\n'@(activity('Last Modified Date').output.firstRow.lastloadDate)'",
+							"value": "@select * from tbluser\nwhere Last_m <=\n'@(activity('Get Max Modified Date').output.firstRow.Last_m)'\nAND Last_m >\n'@(activity('Last Modified Date').output.firstRow.LastLoadDate)'",
 							"type": "Expression"
 						},
 						"queryTimeout": "02:00:00",
