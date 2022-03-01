@@ -475,6 +475,66 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/SinkSQL_Ds')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_SQLdatabase",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "Key",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Name",
+						"type": "varchar"
+					},
+					{
+						"name": "Phone",
+						"type": "varchar"
+					},
+					{
+						"name": "Last_m",
+						"type": "date"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "userData"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/ls_SQLdatabase')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SourceSQL')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_SQLdatabase",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "tbluser"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/ls_SQLdatabase')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/ds_blob_emp')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -551,98 +611,6 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/ls_BlobStorage')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ds_multicsvfiles')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "ls_BlobStorage",
-					"type": "LinkedServiceReference"
-				},
-				"parameters": {
-					"filename": {
-						"type": "string"
-					}
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": {
-							"value": "@dataset().filename",
-							"type": "Expression"
-						},
-						"container": "raw"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/ls_BlobStorage')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ds_sink_sqldatabase')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "ls_SQLdatabase",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "EmployeeName",
-						"type": "varchar"
-					},
-					{
-						"name": "Age",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "LastWorkingDay",
-						"type": "date"
-					},
-					{
-						"name": "Department",
-						"type": "varchar"
-					},
-					{
-						"name": "Education",
-						"type": "varchar"
-					},
-					{
-						"name": "Gender",
-						"type": "varchar"
-					},
-					{
-						"name": "MaritalStatus",
-						"type": "varchar"
-					},
-					{
-						"name": "MonthlyIncome",
-						"type": "int",
-						"precision": 10
-					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "Emp"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/ls_SQLdatabase')]"
 			]
 		}
 	]
