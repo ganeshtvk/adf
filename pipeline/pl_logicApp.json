@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy data from S to S",
+				"name": "CopyNormal",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -55,7 +55,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "ds_sour_raw",
+						"referenceName": "ds_sinkfiles",
 						"type": "DatasetReference"
 					}
 				]
@@ -65,7 +65,7 @@
 				"type": "WebActivity",
 				"dependsOn": [
 					{
-						"activity": "Copy data from S to S",
+						"activity": "CopyNormal",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -81,7 +81,11 @@
 				"userProperties": [],
 				"typeProperties": {
 					"url": "https://prod-86.eastus.logic.azure.com:443/workflows/afcaef3a65fb415fa5afcb75db3c55c3/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=nwd7ZtONP_WzXoiSDJleCu0bjHUbl03KwEVx6X66L7I",
-					"method": "GET"
+					"method": "POST",
+					"body": {
+						"value": "{\n\"Title\" : \"This is a Emial from Axure Data Factory\",\n\"Message\" : \"Copy EU sales csv file activity executed sucessfully\" \n\n\"dataFactoryName\" : \"@{pipeline().DataFactory}\",\n\"PipelineName\" : \"@{pipeline().Pipeline}\",\n\"TriggerName\" : \"@{pipeline().TriggerName}\",\n\"Time\" : \"@{utcnow()}\"\n\n}",
+						"type": "Expression"
+					}
 				}
 			}
 		],
