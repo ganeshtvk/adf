@@ -1,0 +1,40 @@
+{
+	"name": "getmatadata_csv",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_BlobStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Call Center Data.csv",
+				"container": "raw"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "JAI_AIRPORT",
+				"type": "String"
+			},
+			{
+				"name": "MAX_TEMP",
+				"type": "String"
+			},
+			{
+				"name": "400",
+				"type": "String"
+			},
+			{
+				"name": "185",
+				"type": "String"
+			}
+		]
+	}
+}
