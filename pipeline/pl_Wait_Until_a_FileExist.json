@@ -35,6 +35,7 @@
 								],
 								"storeSettings": {
 									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
 									"enablePartitionDiscovery": false
 								},
 								"formatSettings": {
@@ -56,7 +57,7 @@
 							"userProperties": [],
 							"typeProperties": {
 								"expression": {
-									"value": "@activity('Get Metadata country').output.exists",
+									"value": "@activity('Get Metadata EMP1').output.exists",
 									"type": "Expression"
 								},
 								"ifFalseActivities": [
