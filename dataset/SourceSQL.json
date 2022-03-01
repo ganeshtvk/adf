@@ -1,0 +1,16 @@
+{
+	"name": "SourceSQL",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_SQLdatabase",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "tbluser"
+		}
+	}
+}
