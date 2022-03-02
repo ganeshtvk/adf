@@ -1,0 +1,12 @@
+{
+	"name": "selfIR_SQLdatabase",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_SQLdatabase",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	}
+}

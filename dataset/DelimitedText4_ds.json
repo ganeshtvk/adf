@@ -1,0 +1,21 @@
+{
+	"name": "DelimitedText4_ds",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_FileServer",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "FileServerLocation"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
