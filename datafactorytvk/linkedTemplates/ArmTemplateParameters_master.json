@@ -8,11 +8,20 @@
 		"ls_BlobStorage_connectionString": {
 			"value": ""
 		},
+		"ls_FileServer_password": {
+			"value": ""
+		},
 		"ls_SQLdatabase_connectionString": {
 			"value": ""
 		},
 		"ls_adlsgen2_accountKey": {
 			"value": ""
+		},
+		"ls_FileServer_properties_typeProperties_host": {
+			"value": "F:\\SelfIntegrated"
+		},
+		"ls_FileServer_properties_typeProperties_userId": {
+			"value": "GANESH"
 		},
 		"ls_adlsgen2_properties_typeProperties_url": {
 			"value": "https://storeadlsgen2.dfs.core.windows.net"
