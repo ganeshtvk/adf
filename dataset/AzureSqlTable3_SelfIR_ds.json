@@ -1,0 +1,12 @@
+{
+	"name": "AzureSqlTable3_SelfIR_ds",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_SQLdatabase",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	}
+}

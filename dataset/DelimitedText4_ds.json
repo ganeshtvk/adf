@@ -5,11 +5,21 @@
 			"referenceName": "ls_FileServer",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"Filename": {
+				"type": "string",
+				"defaultValue": "na"
+			}
+		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
-				"type": "FileServerLocation"
+				"type": "FileServerLocation",
+				"fileName": {
+					"value": "@concat(dataset().Filename,'.txt')",
+					"type": "Expression"
+				}
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
