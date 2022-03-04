@@ -39,7 +39,7 @@
 			"type": "string",
 			"defaultValue": "https://github.com"
 		},
-		"event_trigger_properties_typeProperties_scope": {
+		"event_trigger3_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/2f1c0a61-9aaa-496b-bbdb-18d24e9ff698/resourceGroups/az-dev1/providers/Microsoft.Storage/storageAccounts/storageccountn1"
 		},
@@ -132,8 +132,8 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
-					"event_trigger_properties_typeProperties_scope": {
-						"value": "[parameters('event_trigger_properties_typeProperties_scope')]"
+					"event_trigger3_properties_typeProperties_scope": {
+						"value": "[parameters('event_trigger3_properties_typeProperties_scope')]"
 					}
 				}
 			},

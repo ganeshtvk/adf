@@ -39,7 +39,7 @@
 			"type": "string",
 			"defaultValue": "https://github.com"
 		},
-		"event_trigger_properties_typeProperties_scope": {
+		"event_trigger3_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/2f1c0a61-9aaa-496b-bbdb-18d24e9ff698/resourceGroups/az-dev1/providers/Microsoft.Storage/storageAccounts/storageccountn1"
 		}
@@ -3035,7 +3035,7 @@
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"annotations": [],
-				"runtimeState": "Started",
+				"runtimeState": "Stopped",
 				"pipelines": [
 					{
 						"pipelineReference": {
@@ -3061,12 +3061,12 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/event_trigger')]",
+			"name": "[concat(parameters('factoryName'), '/event_trigger3')]",
 			"type": "Microsoft.DataFactory/factories/triggers",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"annotations": [],
-				"runtimeState": "Stopped",
+				"runtimeState": "Started",
 				"pipelines": [
 					{
 						"pipelineReference": {
@@ -3080,7 +3080,7 @@
 				"typeProperties": {
 					"blobPathBeginsWith": "/raw/blobs/",
 					"ignoreEmptyBlobs": true,
-					"scope": "[parameters('event_trigger_properties_typeProperties_scope')]",
+					"scope": "[parameters('event_trigger3_properties_typeProperties_scope')]",
 					"events": [
 						"Microsoft.Storage.BlobCreated"
 					]

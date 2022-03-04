@@ -29,7 +29,7 @@
 		"ls_http_github_step2c_properties_typeProperties_url": {
 			"value": "https://github.com"
 		},
-		"event_trigger_properties_typeProperties_scope": {
+		"event_trigger3_properties_typeProperties_scope": {
 			"value": "/subscriptions/2f1c0a61-9aaa-496b-bbdb-18d24e9ff698/resourceGroups/az-dev1/providers/Microsoft.Storage/storageAccounts/storageccountn1"
 		},
 		"containerUri": {
