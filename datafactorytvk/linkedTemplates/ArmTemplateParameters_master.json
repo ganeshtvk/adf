@@ -26,6 +26,9 @@
 		"ls_adlsgen2_properties_typeProperties_url": {
 			"value": "https://storeadlsgen2.dfs.core.windows.net"
 		},
+		"ls_http_github_step2c_properties_typeProperties_url": {
+			"value": "https://github.com"
+		},
 		"containerUri": {
 			"value": ""
 		},
