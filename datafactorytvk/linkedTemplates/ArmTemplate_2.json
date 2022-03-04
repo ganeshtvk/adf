@@ -1389,6 +1389,7 @@
 								"storeSettings": {
 									"type": "AzureBlobStorageReadSettings",
 									"recursive": true,
+									"wildcardFileName": "*.csv",
 									"enablePartitionDiscovery": false
 								},
 								"formatSettings": {
@@ -1605,34 +1606,33 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/trigger1')]",
+			"name": "[concat(parameters('factoryName'), '/event_trigger3')]",
 			"type": "Microsoft.DataFactory/factories/triggers",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"annotations": [],
-				"runtimeState": "Stopped",
+				"runtimeState": "Started",
 				"pipelines": [
 					{
 						"pipelineReference": {
-							"referenceName": "pl_Empcsv_Emptables_Archive_Delete",
+							"referenceName": "trigger_schedule_Demo",
 							"type": "PipelineReference"
 						},
 						"parameters": {}
 					}
 				],
-				"type": "ScheduleTrigger",
+				"type": "BlobEventsTrigger",
 				"typeProperties": {
-					"recurrence": {
-						"frequency": "Minute",
-						"interval": 1,
-						"startTime": "2022-02-22T00:00:00",
-						"endTime": "2022-02-22T00:59:31",
-						"timeZone": "India Standard Time"
-					}
+					"blobPathBeginsWith": "/raw/blobs/",
+					"ignoreEmptyBlobs": true,
+					"scope": "[parameters('event_trigger3_properties_typeProperties_scope')]",
+					"events": [
+						"Microsoft.Storage.BlobCreated"
+					]
 				}
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/pl_Empcsv_Emptables_Archive_Delete')]"
+				"[concat(variables('factoryId'), '/pipelines/trigger_schedule_Demo')]"
 			]
 		},
 		{
@@ -1667,33 +1667,34 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/event_trigger3')]",
+			"name": "[concat(parameters('factoryName'), '/trigger1')]",
 			"type": "Microsoft.DataFactory/factories/triggers",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"annotations": [],
-				"runtimeState": "Started",
+				"runtimeState": "Stopped",
 				"pipelines": [
 					{
 						"pipelineReference": {
-							"referenceName": "trigger_schedule_Demo",
+							"referenceName": "pl_Empcsv_Emptables_Archive_Delete",
 							"type": "PipelineReference"
 						},
 						"parameters": {}
 					}
 				],
-				"type": "BlobEventsTrigger",
+				"type": "ScheduleTrigger",
 				"typeProperties": {
-					"blobPathBeginsWith": "/raw/blobs/",
-					"ignoreEmptyBlobs": true,
-					"scope": "[parameters('event_trigger3_properties_typeProperties_scope')]",
-					"events": [
-						"Microsoft.Storage.BlobCreated"
-					]
+					"recurrence": {
+						"frequency": "Minute",
+						"interval": 1,
+						"startTime": "2022-02-22T00:00:00",
+						"endTime": "2022-02-22T00:59:31",
+						"timeZone": "India Standard Time"
+					}
 				}
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/trigger_schedule_Demo')]"
+				"[concat(variables('factoryId'), '/pipelines/pl_Empcsv_Emptables_Archive_Delete')]"
 			]
 		}
 	]
