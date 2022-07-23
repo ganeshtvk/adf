@@ -1,0 +1,16 @@
+{
+	"name": "ds_sql_testing_from_httpToSql",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_sql_testing",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "covid-db"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,33 @@
+{
+	"name": "ds_incremental_source",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_sql_testing",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "PersonID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LastDateModified",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "tablesrc"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
