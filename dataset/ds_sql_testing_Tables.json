@@ -1,0 +1,25 @@
+{
+	"name": "ds_sql_testing_Tables",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_sql_testing",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"Tablename": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "covid-db",
+			"table": {
+				"value": "@(concat(replace(dataset().Tablename,\".csv\",' ')\n",
+				"type": "Expression"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

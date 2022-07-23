@@ -1,0 +1,24 @@
+{
+	"name": "ds_sql_testingsink",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_sql_testing",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"SinkFilename": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"table": {
+				"value": "@dataset().SinkFilename",
+				"type": "Expression"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
