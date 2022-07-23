@@ -1,0 +1,42 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "azureproDataFactory"
+		},
+		"ls_ablob_covidreportingsa_connectionString": {
+			"value": ""
+		},
+		"ls_adls_covidreportingdl_accountKey": {
+			"value": ""
+		},
+		"ls_adls_excelfiles_accountKey": {
+			"value": ""
+		},
+		"ls_sql_testing_connectionString": {
+			"value": ""
+		},
+		"ls_adls_covidreportingdl_properties_typeProperties_url": {
+			"value": "https://gkcovidreportingdl.dfs.core.windows.net/"
+		},
+		"ls_adls_excelfiles_properties_typeProperties_url": {
+			"value": "https://exceldatafiles.dfs.core.windows.net/"
+		},
+		"ls_https_opendataecdc_europa_eu_properties_typeProperties_url": {
+			"value": "@{linkedService().sourceBaseUrl}"
+		},
+		"ls_testing_htttp_properties_typeProperties_url": {
+			"value": "https://github.com"
+		},
+		"tr_ingest_population_data_properties_typeProperties_scope": {
+			"value": "/subscriptions/a9c4ec3f-29cf-4c35-a1a4-20361c423f39/resourceGroups/azurepro/providers/Microsoft.Storage/storageAccounts/gkcovidreportingsa"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
