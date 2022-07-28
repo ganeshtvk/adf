@@ -14,6 +14,9 @@
 		"ls_adls_excelfiles_accountKey": {
 			"value": ""
 		},
+		"ls_sql_database_connectionString": {
+			"value": ""
+		},
 		"ls_sql_testing_connectionString": {
 			"value": ""
 		},

@@ -19,6 +19,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'ls_adls_excelfiles'"
 		},
+		"ls_sql_database_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_sql_database'"
+		},
 		"ls_sql_testing_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'ls_sql_testing'"
@@ -107,6 +111,19 @@
 					"url": "[parameters('ls_https_opendataecdc_europa_eu_properties_typeProperties_url')]",
 					"enableServerCertificateValidation": true,
 					"authenticationType": "Anonymous"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ls_sql_database')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"connectionString": "[parameters('ls_sql_database_connectionString')]"
 				}
 			},
 			"dependsOn": []
@@ -298,6 +315,37 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/ds_az_database')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_sql_database",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "FileNAME",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "CONFIG"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/ls_sql_database')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/ds_blob_incrementalload_sink')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -324,6 +372,44 @@
 					"quoteChar": "\""
 				},
 				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/ls_ablob_covidreportingsa')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ds_class_blob')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_ablob_covidreportingsa",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "ClassReport.csv",
+						"container": "raw"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					}
+				]
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/ls_ablob_covidreportingsa')]"
@@ -514,85 +600,6 @@
 				"typeProperties": {
 					"schema": "dbo",
 					"table": "tablesrc"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/ls_sql_testing')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ds_json_lookup_testing')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "ls_adls_covidreportingdl",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Json",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileName": "testing.json",
-						"folderPath": "testing",
-						"fileSystem": "raw"
-					}
-				},
-				"schema": {}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/ls_adls_covidreportingdl')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ds_lookup_testing')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "ls_adls_covidreportingdl",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Json",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileName": "testing.json",
-						"folderPath": "testing",
-						"fileSystem": "raw"
-					}
-				},
-				"schema": {}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/ls_adls_covidreportingdl')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ds_multiSheet_sink')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "ls_sql_testing",
-					"type": "LinkedServiceReference"
-				},
-				"parameters": {
-					"dsTableName": {
-						"type": "string"
-					}
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": {
-						"value": "@dataset().dsTableName",
-						"type": "Expression"
-					}
 				}
 			},
 			"dependsOn": [
