@@ -10,7 +10,7 @@
 					"referenceName": "ls_AzureKeyVault",
 					"type": "LinkedServiceReference"
 				},
-				"secretName": "azure-sql"
+				"secretName": "azure-sqldb"
 			}
 		}
 	}
