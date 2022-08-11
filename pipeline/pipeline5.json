@@ -1,0 +1,60 @@
+{
+	"name": "pipeline5",
+	"properties": {
+		"activities": [
+			{
+				"name": "Notebook1",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Set variable1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Phase1/ETL/Read_Write_ADLS2_Files",
+					"baseParameters": {
+						"processeddata": {
+							"value": "@variables('myvariable')",
+							"type": "Expression"
+						},
+						"sourcetablename": "cust"
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "AzureDatabricks1",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "myvariable",
+					"value": {
+						"value": "@formatDateTime(utcnow(),'yyyy/MM/dd')",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"variables": {
+			"myvariable": {
+				"type": "String"
+			}
+		},
+		"annotations": []
+	}
+}
