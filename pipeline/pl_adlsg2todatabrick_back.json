@@ -48,6 +48,49 @@
 					"referenceName": "ls_AzureDatabricks",
 					"type": "LinkedServiceReference"
 				}
+			},
+			{
+				"name": "Stored procedure",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "Data Notebook",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[notebooklogs_usp]",
+					"storedProcedureParameters": {
+						"msgname": {
+							"value": {
+								"value": "@activity('Data Notebook').output.runOutput",
+								"type": "Expression"
+							},
+							"type": "String"
+						},
+						"rundetails": {
+							"value": {
+								"value": "@activity('Data Notebook').output.runPageUrl",
+								"type": "Expression"
+							},
+							"type": "String"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "lsAzureSqlDatabase",
+					"type": "LinkedServiceReference"
+				}
 			}
 		],
 		"variables": {
